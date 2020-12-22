@@ -1,0 +1,214 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Manual de 
+%
+%     Huertas Agroecológicas
+%     Para la Educación en Salud Alimentaria
+%
+%  Fundación Nodo Ambiental
+%
+%
+% Documento creado el 17/12/20
+%
+% Licencia:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	                    Carga y configuración del documento
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{book}
+
+\input{source/structure.tex}
+\usepackage{subfiles}
+
+\begin{document}
+\frontmatter%
+%
+%------------------------------------------------------------------------------------------
+%                                    Título
+%------------------------------------------------------------------------------------------
+%
+\setromanfont{Minion Pro}
+\setsansfont{Helvetica Neue}
+%
+\subfile{source/title}%
+%
+%------------------------------------------------------------------------------------------
+%                                    Índice y licencia
+%------------------------------------------------------------------------------------------
+%
+\thispagestyle{empty}
+\pagecolor{white}
+\color{black}
+\setsansfont{Segoe UI}
+%
+\subfile{source/frontmatter}%
+%
+\mainmatter%
+%
+%------------------------------------------------------------------------------------------
+%                                    Capítulo huertas
+%------------------------------------------------------------------------------------------
+%
+\subfile{source/huertas}%
+%
+%------------------------------------------------------------------------------------------
+%                                    Capítulo bichitos
+%------------------------------------------------------------------------------------------
+%
+\subfile{source/insectos}%
+%
+%------------------------------------------------------------------------------------------
+%                                    Capítulo compost
+%------------------------------------------------------------------------------------------
+%
+% Eliminar línea cuando se cargue el subarchivo
+\chapter{\color{black!50}Compostaje}\vfill\observation{Este capítulo todavía no existe}\vfill
+%\subfile{source/compost}%
+%
+%------------------------------------------------------------------------------------------
+%                           Formato de las secciones extra
+%------------------------------------------------------------------------------------------
+%
+% TODO Spell check
+%
+% TODO Arreglar wea de que en el ToC figura una página antes todo
+%
+% TODO Arreglar detalles de formato faltantes (colores, espaciados, etc)
+%
+% TODO Separar en subfiles
+%
+% ----- Formato de ToC -----
+%
+% \titlecontents{something}
+%   [Left indentation]
+%   {Spacing and font format}
+%   {Numbered something format}
+%   {Numberless something format}
+%   {Page number and filler format}
+%
+\titlecontents{chapter}%
+	[1.25cm]%
+	{\addvspace{12pt}\large\sffamily}%
+	{}%
+	{\color{black}}%
+    {\color{black!90}\normalsize\;\titlerule*[.5pc]{.}\;\thecontentspage}%
+\titlecontents{section}%
+	[1.25cm]%
+	{\addvspace{3pt}\sffamily}%
+	{\contentslabel[\thecontentslabel]{1.25cm}}%
+	{}%
+	{\hfill\color{black!90}\thecontentspage}%
+\titlecontents{subsection}%
+	[1.25cm]%
+	{\addvspace{1pt}\sffamily\small}%
+	{\contentslabel[\thecontentslabel]{1.25cm}}%
+	{}%
+	{\ \titlerule*[.5pc]{.}\;\color{black!70}\thecontentspage}%
+%
+% ----- Formato de números de página segmentados -----
+%
+\newcounter{specialChaptersPage}[chapter]%
+\newcounter{currentPageNumber}%
+%
+\setcounter{currentPageNumber}{\arabic{page}}%
+%   
+\EveryShipout{\stepcounter{specialChaptersPage}\stepcounter{currentPageNumber}}% Steps counter every page
+%
+% ----- Formato de título de capítulo -----
+%    
+\renewcommand{\chaptermark}[1]{
+    \markboth{\sffamily\normalsize\bfseries#1}{}% Removes chapter numbering and titling from headers
+}% 
+%
+%------------------------------------------------------------------------------------------
+%                                    Referencias
+%------------------------------------------------------------------------------------------
+%
+% ----- Formato de título de capítulo (display) -----
+% Remueve el número y deja solo el nombre
+%
+\titleformat{\chapter}[hang]%
+    {\thispagestyle{empty}\raggedleft\sffamily\fontsize{30}{40}\selectfont\bfseries}%
+	{}%
+	{1pt}%
+    {\Huge\bfseries\sffamily\vspace{0.5em}\hrule\vspace{0.5em}{#1}}%
+%
+% ----- Formato de numeración -----
+%
+\pagebreak
+\clearpage\cleardoublepage\pagebreak
+\renewcommand{\thepage}{R-\arabic{specialChaptersPage} (\arabic{currentPageNumber})}%
+%
+% ----- Contenido -----
+%
+\chapter{Referencias}%
+%
+% TODO Vincular la bibliografía
+%
+% TODO Manejar qué pedo con ToC y eso
+%
+% TODO Darle el formato bonito especial a la lista de referencias
+%
+% TODO Hacer el formato de las referencias en sí
+%
+\observation{No hay ninguna referencia, esto es texto cualquiera de relleno}
+\blindlist{itemize}[36]
+%
+\pagebreak
+\newpage
+\clearpage
+\pagestyle{empty}
+%
+%------------------------------------------------------------------------------------------
+%                                    Apéndices
+%------------------------------------------------------------------------------------------
+%
+% ----- Formato de título de capítulo (display) -----
+% Remueve todo, anula el display
+%
+\titleformat{\chapter}[display]
+  {}{}{0pt}{}%
+%
+% ----- Formato de numeración -----
+%
+\renewcommand{\thepage}{A-\arabic{specialChaptersPage} (\arabic{currentPageNumber})}%
+\renewcommand{\thesection}{\Alph{section}}
+%
+\clearpage\cleardoublepage\newpage\pagebreak
+%
+% ----- Apertura del apéndice -----
+%
+\appendix
+%
+\thispagestyle{empty}
+\chapter{Apéndices}%
+%
+% ----- Página de cambio de parte -----
+%
+\setsansfont{Helvetica Neue}
+\sffamily
+%
+\parbox[b]{\textwidth}{
+    \vspace{0.4\textheight} 
+    {\centering\fontsize{40}{50}{\bfseries Apéndices\\}}
+    \vspace{0.4\textheight} 
+}%
+%
+\pagecolor{CompostGreen!45}
+\clearpage\cleardoublepage\pagebreak
+\newpage
+%
+% ----- Contenido -----
+%
+\setsansfont{Segoe UI}  % Restaura fuentes, colores y encabezados
+\color{black}
+\pagecolor{white}
+\pagestyle{fancy}
+%
+\subfile{source/apendices}
+%
+\end{document}
